@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\UpdateTagRequest;
 use App\Models\Post;
 use Illuminate\Support\Facades\Request;
@@ -40,7 +42,7 @@ class PostController extends Controller
      * @param  \App\Http\Requests\StoreTagRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $image = $request->file('cover_image');
         $path = $image->store('public/cover_images');
@@ -92,7 +94,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTagRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         $update = $post->update([
             'title' => $request->title,
