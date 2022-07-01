@@ -57,9 +57,9 @@ class AuthController extends Controller
 
     public function verifying(Request $request)
     {
-        $userId = $request->user()->id;
        $verifycode = $request->verification_code;
-      $user = User::query()->where('verification_code','=',$verifycode)->find($userId);
+       $phone_number = $request->phone_number;
+      $user = User::query()->where('verification_code','=',$verifycode)->where('phone_number' ,'=',$phone_number);
       if ($user){
           $user->update(['verified_at' => now()]);
           return response()->json(['status_code' => 200 , 'message' => 'You Successfully Verified Your Account']);

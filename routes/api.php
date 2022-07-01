@@ -34,7 +34,7 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-Route::middleware(['auth:sanctum', 'verify'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/tags', TagController::class)->except(['create' ,'show' ,'edit']);
     Route::resource('/posts', PostController::class)->except(['create' ,'edit']);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,13 @@ class Verified
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->verified_at == null) {
-            return response()->json(['message' => 'You must Verify Your Account First']);
-        }
+        $user = User::where('phone_number', $request->phone_number)->first();
+        if ($user) {
+            if ( $user->verified_at == null) {
+                return response()->json(['message' => 'You must Verify Your Account First']);
+            }
         return $next($request);
+        }
+        return response()->json(['message' => 'You Should Register First']);
     }
 }

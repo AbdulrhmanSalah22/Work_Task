@@ -12,6 +12,6 @@ class Own implements Scope
 
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('user_id' ,'=' ,auth()->id());
+        $builder->where('user_id' ,'=' ,auth('sanctum')->id());
     }
 }
