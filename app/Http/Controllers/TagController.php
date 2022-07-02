@@ -58,7 +58,10 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        if ($tag)
+            return response()->json(['tag' => $tag]);
+        else
+            return response()->json(['tag' => 'Not Found']);
     }
 
     /**

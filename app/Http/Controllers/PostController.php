@@ -137,8 +137,8 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function restore(Post $post){
-       $restored =  $post ->restore();
+    public function restore($id){
+        $restored =  Post::withTrashed()->findOrFail($id)->restore();
         if ($restored)
             return response()->json(['restore' => 'Your Post Restored Successfully']);
         else

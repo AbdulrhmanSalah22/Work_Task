@@ -39,7 +39,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/posts', PostController::class)->except(['create' ,'edit']);
 
     Route::get('/posts/deleted', [PostController::class, 'viewDeleted']);
-    Route::get('/posts/restore/{post}', [PostController::class, 'restore']);
+    Route::get('/posts/restore/{id}', [PostController::class, 'restore']);
 
     Route::get('/stats', function () {
         $posts_count = Post::query()->count();
